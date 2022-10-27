@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="text-center">
+    <h1 class="display-4">Bienvenidos</h1>
+    <p>Prueba técnica <a href="https://github.com/michaelacevedo18"> Michael Acevedo</a> </p>
+</div>
+<div class="row">
+    <div class="col-6">
+        <img src="/img/negocios-en-linea.jpg" class="img-fluid rounded-start" alt="Indeximg" />
+    </div>
+    <div class="col-6">
+        <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action active">
+                Instructivo
+            </a>
+            <a asp-controller="Products" asp-action="Index" class="list-group-item list-group-item-action">1. Agregar productos</a>
+            <a asp-controller="Customers" asp-action="Index" class="list-group-item list-group-item-action">2. Crear Clientes</a>
+            <a asp-controller="Sells" asp-action="Index" class="list-group-item list-group-item-action">3. Seleccionar un cliente para asociarlo a una venta</a>
+            <a href="#" class="list-group-item list-group-item-action">4. Añadir detalles a la venta</a>
+            <a asp-controller="Sells" asp-action="Index" class="list-group-item list-group-item-action">5. Revisión del total de la venta posterior a añadir detalles</a>
+        </div>
+    </div>
+</div>
+

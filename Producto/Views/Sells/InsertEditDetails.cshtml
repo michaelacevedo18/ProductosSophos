@@ -1,0 +1,74 @@
+﻿@model Producto.Models.ViewModels.SellProductVM
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<a class="btn btn-success" asp-controller="Sells" asp-action="Index">Regresar</a>
+<h1 class="text-center">Detalles de la venta No. @ViewBag.IdVenta</h1>
+<form method="post">
+    <input type="hidden" asp-for="Saledetail.SaleId" value="@ViewBag.IdVenta" />
+    <input type="hidden" asp-for="Saledetail.PrecioPorDetalle"/>
+    <div class="card" style="width:600px;">
+        <div class="card-header">
+            Productos
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-6">
+                    <label class="form-label">Productos:</label>
+                    @Html.DropDownListFor(c => c.Saledetail.ProductId, Model.ListProducts,
+                    new { @class = "form-select"})
+                    <span asp-validation-for="Saledetail.ProductId" class="text-danger"></span>
+                </div>
+                <div class="col-6">
+                    <label class="form-label">Cantidad</label>
+                    <input type="number" asp-for="Saledetail.Cantidad" class="form-control" />
+                    <span asp-validation-for="Saledetail.Cantidad" class="text-danger"></span>
+                </div>
+            </div>
+            <br />
+            <div class="d-grid gap-2 col-6 mx-auto">
+                <button class="btn btn-primary" type="submit" asp-controller="Sells" asp-action="AddDetails">Agregar producto a la lista</button>
+            </div>
+            
+        </div>
+    </div>
+   
+</form>
+<br />
+@if (Model.ListDetails.Count() > 0)
+{
+    <table class="table table-bordered table-striped" style="width:50%">
+        <thead class="table-dark">
+            <tr>                
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Precio Unitario</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ListDetails)
+            {
+                <tr>                    
+                    <th>@item.Product.Name</th>
+                    <th>@item.Cantidad</th>
+                    <th>@item.Product.Price</th>
+                    @{
+                        var total = @item.Cantidad * @item.Product.Price;
+                    }
+                    <th>@total</th>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <h4>Total de la compra: <label>@ViewBag.TotalCompra</label></h4>
+}
+else
+{
+    <p>No hay Registro de Categoria</p>
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />    
+}

@@ -1,0 +1,41 @@
+﻿@model Producto.Models.ViewModels.SellProductVM
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<a class="btn btn-success" asp-controller="Home" asp-action="Index">Ir a inicio</a>
+<h1>Crear Venta</h1>
+<form method="post">
+    <div class="row">
+        <div class="col-md-3 col-sm-12 mb-3">
+            <label class="form-label">Productos:</label>
+            @Html.DropDownListFor(c => c.Saledetail.ProductId, Model.ListProducts,
+            new { @class = "form-select"})
+            <span asp-validation-for="Saledetail.ProductId" class="text-danger"></span>
+        </div>
+        <div class="col-md-3 col-sm-12 mb-3">
+            <button class="btn btn-primary" type="submit" asp-controller="Sells" asp-action="CreateSale">Crear Venta</button>
+        </div>
+    </div>
+
+</form>
+<div class="row">
+    <div class="col-sm-12 table-responsive">
+        <table id="tblDatos" class="table" style="width:100%">
+            <thead class="table-dark">
+                <tr>
+                    <th>Id Venta</th>
+                    <th>Cliente</th>
+                    <th>Fecha</th>
+                    <th>Total</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/IndexVentas.js"></script>
+}

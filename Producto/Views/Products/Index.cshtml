@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<a class="btn btn-success" asp-controller="Home" asp-action="Index">Ir a inicio</a>
+
+<div class="row">
+    <div class="col-10">
+        <h1 class="text-center">Mantenimiento de Productos</h1>
+    </div>
+    <div class="col-2">
+        <a class="btn btn-primary" asp-controller="Products" asp-action="Upsert">Crear producto</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12 table-responsive">
+        <table id="tblDatos" class="table" style="width:100%">
+            <thead class="table-dark">
+                <tr>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/IndexProductos.js"></script>
+}
